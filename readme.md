@@ -1,4 +1,4 @@
-# <%= moduleName %> [![Build Status](https://travis-ci.org/<%= githubUsername %>/<%= moduleName %>.svg?branch=master)](https://travis-ci.org/<%= githubUsername %>/<%= moduleName %>)
+# arkWatcher [![Build Status](https://travis-ci.org/<%= githubUsername %>/<%= moduleName %>.svg?branch=master)](https://travis-ci.org/<%= githubUsername %>/<%= moduleName %>)
 
 >
 
@@ -6,23 +6,20 @@
 ## Install
 
 ```
-$ npm install --save <%= moduleName %>
+$ npm install --save arkWatcher
 ```
 
 
 ## Usage
 
 ```js
-var <%= camelModuleName %> = require('<%= moduleName %>');
-
-<%= camelModuleName %>('unicorns');
-//=> 'unicorns & rainbows'
+var arkWatcher = require('arkWatcher');
 ```
 
 
 ## API
 
-### <%= camelModuleName %>(input, [options])
+### arkWatcher('status')
 
 #### input
 
@@ -42,4 +39,4 @@ Lorem ipsum.
 
 ## License
 
-MIT © [<%= name %>](https://github.com/<%= githubUsername %>)
+MIT © [Sam Hill](https://github.com/samjhill)

@@ -1,13 +1,13 @@
 {
-  "name": "<%= moduleName %>",
-  "version": "0.0.0",
-  "description": "",
+  "name": "arkWatcher",
+  "version": "0.0.1",
+  "description": "Watches and returns ArkManager commands",
   "license": "MIT",
-  "repository": "<%= githubUsername %>/<%= moduleName %>",
+  "repository": "https://github.com/samjhill/arkWatcher",
   "author": {
-    "name": "<%= name %>",
-    "email": "<%= email %>",
-    "url": "<%= website %>"
+    "name": "Sam Hill",
+    "email": "samuhill@gmail.com",
+    "url": "http://www.samjhill.com"
   },
   "engines": {
     "node": ">=0.10.0"
