@@ -1,5 +1,6 @@
 'use strict';
 var assert = require('assert');
-var arkWatcher = require('./');
+var arkWatcher = require('./index.js');
 
-console.log(arkWatcher('status'));
+var status = arkWatcher('status');
+console.log(status);

@@ -3,27 +3,25 @@ var cmd = require("cmd-exec").init();
 var async = require("async");
 
 module.exports = function (str, opts){
-   var calls = [];
+   var results = "nothing yet";
 
    if(str == 'status'){
-      //console.log('getting status...');
       var command = 'arkmanager status';
    }
    
-   calls.push(function(callback){
-      cmd.exec(command, function(err, res){
-         if (err) {
-           return callback(err.message);
-         } else {
-	   return callback(res.message);
-         }
+   return async.series([
+      function(callback){
+         cmd.exec(command, function(err, res){
+            if (err) {
+              console.log(err);
+              return callback(err);
+            } else {
+	      return callback(res);
+            }
+         })
      }
-  )});
-
-  async.parallel(calls, function(err, result) {
-    console.log('running');
-    if (err)
-        return console.log(err);
-    return(result);
-   });
+    ],
+    function( res ){
+      return res.message;
+    });
 };
