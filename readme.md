@@ -1,40 +1,41 @@
-# arkWatcher [![Build Status](https://travis-ci.org/<%= githubUsername %>/<%= moduleName %>.svg?branch=master)](https://travis-ci.org/<%= githubUsername %>/<%= moduleName %>)
+# arkWatcher
+arkWatcher is a RESTful API that provides useful information about your [ARK:Survival Evolved](http://store.steampowered.com/app/346110/) Server.
 
->
 
+## Install & Run
 
-## Install
+First, install and set up [ark-server-tools](https://github.com/FezVrasta/ark-server-tools). Check to make sure you're ready to go by running `arkmanager status`. 
 
+Once that's all set, it's pretty simple.
+
+```shell
+git clone https://github.com/samjhill/arkWatcher.git
+node index.js
 ```
-$ npm install --save arkWatcher
+
+You should see the following:
+```shell
+listening on port 4730
 ```
-
-
-## Usage
-
-```js
-var arkWatcher = require('arkWatcher');
-```
+Now, just navigate to http://localhost:4730/status to see if it's working!
 
 
 ## API
 
-### arkWatcher('status')
+### /status
 
-#### input
+Returns the status of the server.
 
-Type: `string`
-
-Lorem ipsum.
-
-#### options
-
-##### foo
-
-Type: `boolean`  
-Default: `false`
-
-Lorem ipsum.
+Sample response:
+```json
+[["serverRunning","Yes"],
+["serverOnline","Yes"],
+["serverName","Puesto - (v217.2)"],
+["players","0 / 15"],
+["serverVersion","799915"],
+[""]]
+```
+I'm not sure why it returns that empty array at the end. This project is still in the early stages of development, so there's bound to be some weirdness.
 
 
 ## License
