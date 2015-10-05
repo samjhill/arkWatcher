@@ -38,6 +38,11 @@ Sample response:
 ```
 
 
+## Future Work
+Add more information in the status command
+Add admin authentication
+Add POST requests to run commands remotely
+
 ## License
 
 MIT © [Sam Hill](https://github.com/samjhill)
