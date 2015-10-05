@@ -24,6 +24,6 @@ module.exports = function (str, opts){
     console.log('running');
     if (err)
         return console.log(err);
-    return(JSON.stringify(result));
+    return(result);
    });
 };
