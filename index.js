@@ -11,13 +11,12 @@ app.get('/status', function(req, res) {
   cmd.exec('arkmanager status')
   .then(function(result){
     var status = stripAnsi(result.message);
+    status = status.trim();
     status = status.split('\n');
     status.forEach(function( property, i ){
-       if(property == '')
-          return;
        property = property.split(':');
        property[0] = property[0].toCamelCase();
-       property.forEach(function( item, j) {
+       property.forEach(function( item, j ) {
           item = item.trim();
           property[j] = item;
        });
