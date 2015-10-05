@@ -32,10 +32,8 @@ Sample response:
 ["serverOnline","Yes"],
 ["serverName","Puesto - (v217.2)"],
 ["players","0 / 15"],
-["serverVersion","799915"],
-[""]]
+["serverVersion","799915"]
 ```
-I'm not sure why it returns that empty array at the end. This project is still in the early stages of development, so there's bound to be some weirdness.
 
 
 ## License
