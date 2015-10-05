@@ -6,11 +6,12 @@ module.exports = function (str, opts){
    var calls = [];
 
    if(str == 'status'){
-      console.log('getting status...');
+      //console.log('getting status...');
+      var command = 'arkmanager status';
    }
    
    calls.push(function(callback){
-      cmd.exec("arkmanager status", function(err, res){
+      cmd.exec(command, function(err, res){
          if (err) {
            return callback(err.message);
          } else {
@@ -23,6 +24,6 @@ module.exports = function (str, opts){
     console.log('running');
     if (err)
         return console.log(err);
-    return(result);
+    return(JSON.stringify(result));
    });
 };
