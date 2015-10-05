@@ -1,27 +1,25 @@
 'use strict';
 var cmd = require("cmd-exec").init();
 var async = require("async");
+var express = require('express');
+var app = express();
 
-module.exports = function (str, opts){
-   var results = "nothing yet";
+var results = "nothing yet";
 
-   if(str == 'status'){
-      var command = 'arkmanager status';
-   }
-   
-   return async.series([
-      function(callback){
-         cmd.exec(command, function(err, res){
-            if (err) {
-              console.log(err);
-              return callback(err);
-            } else {
-	      return callback(res);
-            }
-         })
-     }
-    ],
-    function( res ){
-      return res.message;
-    });
-};
+app.get('/status', function(req, res) {
+  res.type('text/json');
+  cmd.exec('arkmanager status')
+  .then(function(result){
+    console.log(result.message);
+    res.send(result.message)
+  })
+  .fail(function(err){
+    console.log(err.message);
+  })
+  .done(function(){
+    console.log("Done!");
+  });
+});
+
+console.log('listening on port ' + (process.env.PORT || 4730));
+app.listen(process.env.PORT || 4730);
