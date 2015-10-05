@@ -28,11 +28,13 @@ Returns the status of the server.
 
 Sample response:
 ```json
-[["serverRunning","Yes"],
+[
+["serverRunning","Yes"],
 ["serverOnline","Yes"],
 ["serverName","Puesto - (v217.2)"],
 ["players","0 / 15"],
 ["serverVersion","799915"]
+]
 ```
 
 
