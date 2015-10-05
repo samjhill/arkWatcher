@@ -1,10 +1,12 @@
 # arkWatcher
-arkWatcher is a RESTful API that provides useful information about your ARK:Survival Evolved Server.
+arkWatcher is a RESTful API that provides useful information about your [ARK:Survival Evolved](http://store.steampowered.com/app/346110/) Server.
 
 
 ## Install & Run
 
-First, install and set up [ark-server-tools](https://github.com/FezVrasta/ark-server-tools).
+First, install and set up [ark-server-tools](https://github.com/FezVrasta/ark-server-tools). Check to make sure you're ready to go by running `arkmanager status`. 
+
+Once that's all set, it's pretty simple.
 
 ```shell
 git clone https://github.com/samjhill/arkWatcher.git
