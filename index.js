@@ -11,8 +11,17 @@ app.get('/status', function(req, res) {
   res.type('text/json');
   cmd.exec('arkmanager status')
   .then(function(result){
-    console.log(result.message);
-    res.send(JSON.stringify(stripAnsi(result.message)))
+    var status = stripAnsi(result.message);
+    status = status.split('\n');
+    status.forEach(function( property, i ){
+       property = property.split(':');
+       property.forEach(function( item, j) {
+          item = item.trim();
+          property[j] = item;
+       });
+       status[i] = property;
+    });
+    res.send(status);
   })
   .fail(function(err){
     console.log(err.message);
