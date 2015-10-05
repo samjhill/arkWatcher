@@ -32,6 +32,24 @@ app.get('/status', function(req, res) {
   });
 });
 
+app.get('/log', function(req, res) {
+  res.type('text/json');
+  cmd.exec('cat /var/log/arktools/arkserver.log')
+  .then(function(result){
+    var logs = stripAnsi(result.message);
+    logs = decodeURIComponent(logs);
+    logs = logs.replace(/\\/g,"/");
+    logs = logs.split('\n');
+    res.send(JSON.stringify(logs));
+  })
+  .fail(function(err){
+    console.log(err.message);
+  })
+  .done(function(){
+    console.log("successfully returned log to a client");
+  });
+});
+
 String.prototype.toCamelCase = function() {
       return this
           .replace(/\s(.)/g, function($1) { return $1.toUpperCase(); })
