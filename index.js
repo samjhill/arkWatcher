@@ -5,7 +5,6 @@ var express = require('express');
 var app = express();
 var stripAnsi = require('strip-ansi');
 
-var results = "nothing yet";
 
 app.get('/status', function(req, res) {
   res.type('text/json');
@@ -14,6 +13,8 @@ app.get('/status', function(req, res) {
     var status = stripAnsi(result.message);
     status = status.split('\n');
     status.forEach(function( property, i ){
+       if(property == '')
+          return;
        property = property.split(':');
        property[0] = property[0].toCamelCase();
        property.forEach(function( item, j) {
@@ -22,13 +23,13 @@ app.get('/status', function(req, res) {
        });
        status[i] = property;
     });
-    res.send(status);
+    res.send(JSON.stringify(status));
   })
   .fail(function(err){
     console.log(err.message);
   })
   .done(function(){
-    console.log("Done!");
+    console.log("successfully returned status to a client");
   });
 });
 
