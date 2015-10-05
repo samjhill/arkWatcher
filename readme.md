@@ -36,11 +36,23 @@ Sample response:
 ["serverVersion","799915"]
 ]
 ```
+### /log
 
+Returns the log from /var/log/arktools/arkserver.log. For now, it is simply broken into pieces by line.
+
+Sample response:
+```json
+[
+"14:43:27: start","/usr/local/bin/arkmanager: line 328: ulimit: open files: cannot modify limit: Operation not permitted",
+"[S_API FAIL] SteamAPI_Init() failed; SteamAPI_IsSteamRunning() failed."
+]
+```
 
 ## Future Work
 Add more information in the status command
+
 Add admin authentication
+
 Add POST requests to run commands remotely
 
 ## License
