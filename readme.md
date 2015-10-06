@@ -48,6 +48,19 @@ Sample response:
 ]
 ```
 
+### /checkupdate
+
+Returns the current version of the server and the latest available version.
+Warning: slow. Nothing I can do about it.
+
+Sample response:
+```json
+[
+["currentVersion","799915"],
+["availableVersion","799915"]
+]
+```
+
 ## Future Work
 Add more information in the status command
 
