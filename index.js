@@ -50,6 +50,36 @@ app.get('/log', function(req, res) {
   });
 });
 
+app.get('/checkupdate', function(req, res) {
+  res.type('text/json');
+  cmd.exec('arkmanager checkupdate')
+  .then(function(result){
+    var returnMsg = stripAnsi(result.message);
+    returnMsg = decodeURIComponent(returnMsg);
+    returnMsg = stripAnsi(returnMsg);
+    returnMsg = returnMsg.trim();
+    returnMsg = returnMsg.split('\n');
+    returnMsg.splice(0,1); //remove the 'querying steam database for latest version...' message
+    returnMsg.splice(returnMsg.length -1, 1); //remove the 'your server is up to date!' message
+    returnMsg.forEach(function( property, i ){
+       property = property.split(':');
+       property[0] = property[0].toCamelCase();
+       property.forEach(function( item, j ) {
+          item = item.trim();
+          property[j] = item;
+       });
+       returnMsg[i] = property;
+    });
+    res.send(JSON.stringify(returnMsg));
+  })
+  .fail(function(err){
+    console.log(err.message);
+  })
+  .done(function(){
+    console.log("successfully returned checkupdate to a client");
+  });
+});
+
 String.prototype.toCamelCase = function() {
       return this
           .replace(/\s(.)/g, function($1) { return $1.toUpperCase(); })
