@@ -1,4 +1,3 @@
-'use strict';
 var cmd = require("cmd-exec").init();
 var async = require("async");
 var express = require('express');
@@ -7,9 +6,10 @@ var stripAnsi = require('strip-ansi');
 
 
 app.get('/status', function(req, res) {
-  res.type('text/json');
+  res.type('application/json');
   cmd.exec('arkmanager status')
   .then(function(result){
+    var returnData = [];
     var status = stripAnsi(result.message);
     status = status.trim();
     status = status.split('\n');
@@ -20,9 +20,11 @@ app.get('/status', function(req, res) {
           item = item.trim();
           property[j] = item;
        });
-       status[i] = property;
+       var o = {};
+       o[property[0]] = property[1];
+       returnData.push(o);
     });
-    res.send(JSON.stringify(status));
+    res.send(returnData);
   })
   .fail(function(err){
     console.log(err.message);
@@ -68,7 +70,9 @@ app.get('/checkupdate', function(req, res) {
           item = item.trim();
           property[j] = item;
        });
-       returnMsg[i] = property;
+       var o = {};
+       o[property[0]] = property[1];
+       returnMsg[i] = o;
     });
     res.send(JSON.stringify(returnMsg));
   })
