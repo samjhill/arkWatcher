@@ -56,4 +56,51 @@ app.get('/checkupdate', function(req, res) {
     console.log("successfully returned checkupdate to a client");
   });
 });
+
+app.post('/stop', function(req, res) {
+  res.type('application/json');
+  cmd.exec('arkmanager stop')
+  .then(function(result){
+    var status = stripAnsi(result.message);
+    status = status.trim();
+    if(status === "The server is already stopped"){
+	res.status(300);
+	res.send(status);
+    }
+    else {
+        res.status(201);
+	res.send('The server has been stopped');
+    }
+  })
+  .fail(function(err){
+    console.log(err.message);
+  })
+  .done(function(){
+    console.log("returned status of server stop");
+  });
+});
+
+app.post('/start', function(req, res) {
+  res.type('application/json');
+  cmd.exec('arkmanager start')
+  .then(function(result){
+    var status = stripAnsi(result.message);
+    status = status.trim();
+    if(status === "The server is already running"){
+	res.status(300);
+	res.send(status);
+    }
+    else {
+    	res.status(201);
+	res.send('The server is now up');
+    }
+  })
+  .fail(function(err){
+    console.log(err.message);
+  })
+  .done(function(){
+    console.log("returned status of server start");
+  });
+});
+
 }
