@@ -17,7 +17,8 @@ You should see the following:
 ```shell
 listening on port 4730
 ```
-Now, just navigate to http://localhost:4730/status to see if it's working!
+Now, just navigate to http://localhost:4730/status to see if it's working! 
+The default username and password is admin:admin, which you should change in data/users.htpasswd.
 
 
 ## API
@@ -51,7 +52,7 @@ Sample response:
 ### /checkupdate
 
 Returns the current version of the server and the latest available version.
-Warning: slow. Nothing I can do about it.
+Warning: slow. Nothing I can do about it - it needs to log in to SteamCMD and check the status there.
 
 Sample response:
 ```json
@@ -63,8 +64,6 @@ Sample response:
 
 ## Future Work
 Add more information in the status command
-
-Add admin authentication
 
 Add POST requests to run commands remotely
 
