@@ -1,6 +1,13 @@
-var router = express.Router();
+module.exports = function(app){
+var cmd = require("cmd-exec").init();
+var async = require("async");
+var stripAnsi = require('strip-ansi');
 
-router.get('/log', function(req, res) {
+app.use(function(req, res, next) {
+  next();
+});
+
+app.get('/log', function(req, res) {
   res.type('text/json');
   cmd.exec('cat /var/log/arktools/arkserver.log')
   .then(function(result){
@@ -18,7 +25,7 @@ router.get('/log', function(req, res) {
   });
 });
 
-router.get('/checkupdate', function(req, res) {
+app.get('/checkupdate', function(req, res) {
   res.type('text/json');
   cmd.exec('arkmanager checkupdate')
   .then(function(result){
@@ -49,3 +56,4 @@ router.get('/checkupdate', function(req, res) {
     console.log("successfully returned checkupdate to a client");
   });
 });
+}
