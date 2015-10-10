@@ -3,7 +3,7 @@ var async = require("async");
 var express = require('express');
 var auth = require('http-auth');
 var basic = auth.basic({
-	realm: "Simon Area.",
+	realm: "arkWatcher",
  	file: __dirname + "/data/users.htpasswd"
 });
 var app = express();
