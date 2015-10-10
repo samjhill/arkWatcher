@@ -25,6 +25,8 @@ The default username and password is admin:admin, which you should change in dat
 
 ### /status
 
+Type: GET
+
 Returns the status of the server.
 
 Sample response:
@@ -39,6 +41,8 @@ Sample response:
 ```
 ### /log
 
+Type: GET
+
 Returns the log from /var/log/arktools/arkserver.log. For now, it is simply broken into pieces by line.
 
 Sample response:
@@ -51,6 +55,8 @@ Sample response:
 
 ### /checkupdate
 
+Type: GET
+
 Returns the current version of the server and the latest available version.
 Warning: slow. Nothing I can do about it - it needs to log in to SteamCMD and check the status there.
 
@@ -62,10 +68,37 @@ Sample response:
 ]
 ```
 
+### /start
+
+Type: POST
+
+Starts the server.
+
+Codes:
+
+201: Started successfully
+
+300: Server is already running
+
+
+### /stop
+
+Type: POST
+
+Stops the server.
+
+Codes:
+
+201: Stopped successfully
+
+300: Server is already stopped
+
+
+
 ## Future Work
 Add more information in the status command
 
-Add POST requests to run commands remotely
+Add more POST requests to run commands remotely
 
 ## License
 
