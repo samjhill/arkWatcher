@@ -94,11 +94,24 @@ Codes:
 300: Server is already stopped
 
 
+### /command
+
+Type: POST
+
+Runs a remote command. Full list of commands can be found [here](http://steamcommunity.com/sharedfiles/filedetails/?id=454529617&searchtext=admin), though as I'm testing, I'm finding that some commands in the list are invalid. 
+
+Codes:
+
+200: Command run successfully
+
+300: Server returned no response for the given command
+
+Also returns the message from the server running the command, in plain text format.
+
+
 
 ## Future Work
 Add more information in the status command
-
-Add more POST requests to run commands remotely
 
 ## License
 
