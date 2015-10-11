@@ -113,8 +113,6 @@ Also returns the message from the server running the command, in plain text form
 ## Future Work
 Add more information in the status command
 
-Add more POST requests to run commands remotely
-
 ## License
 
 MIT © [Sam Hill](https://github.com/samjhill)
