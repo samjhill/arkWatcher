@@ -18,6 +18,7 @@ app.use(auth.connect(basic));
 //routes
 var publicRoutes = require('./routes/public')(app);
 var adminRoutes = require('./routes/admin')(app);
+var systemRoutes = require('./routes/system')(app);
 
 console.log('arkWatcher listening on port ' + (process.env.PORT || 4730));
 app.listen(process.env.PORT || 4730);
