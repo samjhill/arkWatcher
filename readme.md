@@ -68,6 +68,29 @@ Sample response:
 ]
 ```
 
+### /systemLoad
+
+Type: GET
+
+Returns the usage of the system's memory and CPU.
+
+Sample response:
+```json
+{
+    "memory": 3520454656,
+    "memoryInfo": {
+        "rss": 3520454656,
+        "vsize": 20595995574272
+    },
+    "cpu": 29.442942273083002,
+    "cpuInfo": {
+        "pcpu": 29.442942273083002,
+        "pcpuUser": 5.913370184925621,
+        "pcpuSystem": 23.529572088157384
+    }
+}
+```
+
 ### /start
 
 Type: POST
@@ -112,6 +135,7 @@ Also returns the message from the server running the command, in plain text form
 
 ## Future Work
 Add more information in the status command
+
 
 ## License
 
