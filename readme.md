@@ -53,7 +53,7 @@ Sample response:
 ]
 ```
 
-### /checkupdate
+### /checkUpdate
 
 Type: GET
 

@@ -25,7 +25,7 @@ app.get('/log', function(req, res) {
   });
 });
 
-app.get('/checkupdate', function(req, res) {
+app.get('/checkUpdate', function(req, res) {
   res.type('text/json');
   cmd.exec('arkmanager checkupdate')
   .then(function(result){
