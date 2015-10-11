@@ -64,7 +64,7 @@ app.post('/update', function(req, res) {
    	var status = stripAnsi(result.message);
 	status = status.trim();
 	console.log(status);
-	res.send(status);
+	res.send(JSON.stringify(status));
   })
   .fail(function(err){
   })
@@ -81,11 +81,11 @@ app.post('/stop', function(req, res) {
     status = status.trim();
     if(status === "The server is already stopped"){
 	res.status(300);
-	res.send(status);
+	res.send(JSON.stringify(status));
     }
     else {
         res.status(201);
-	res.send('The server has been stopped');
+	res.send(JSON.stringify('The server has been stopped'));
     }
   })
   .fail(function(err){
@@ -104,11 +104,11 @@ app.post('/start', function(req, res) {
     status = status.trim();
     if(status === "The server is already running"){
 	res.status(300);
-	res.send(status);
+	res.send(JSON.stringify(status));
     }
     else {
     	res.status(201);
-	res.send('The server is now up');
+	res.send(JSON.stringify('The server is now up'));
     }
   })
   .fail(function(err){
@@ -127,10 +127,10 @@ app.post('/command', function(req, res) {
     status = status.trim();
     if(status === "Server received, But no response!!") {
     	res.status(300);
-	res.send("Invalid command");
+	res.send(JSON.stringify("No response from server. This doesn't necessarily mean the command failed; there's just no response."));
     }
     else {
-    	res.send(status);
+    	res.send(JSON.stringify(status));
     }
   })
   .fail(function(err){
