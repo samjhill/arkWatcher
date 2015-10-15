@@ -7,7 +7,13 @@ module.exports = function(app){
     res.type('application/json');
     cmd.exec('arkmanager status')
     .then(function(result){
-      var returnData = [];
+      var returnData = {
+          serverRunning: "",
+          serverOnline: "",
+          serverName: "",
+          players: "",
+          serverVersion: ""
+      };
       var status = stripAnsi(result.message);
       status = status.trim();
       status = status.split('\n');
@@ -18,9 +24,7 @@ module.exports = function(app){
             item = item.trim();
             property[j] = item;
          });
-         var o = {};
-         o[property[0]] = property[1];
-         returnData.push(o);
+         returnData[property[0]] = property[1];
       });
       res.send(returnData);
     })
