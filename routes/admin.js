@@ -25,7 +25,7 @@ app.get('/log', function(req, res) {
   });
 });
 
-app.get('/checkUpdate', function(req, res) {
+app.get('/isUpdated', function(req, res) {
   res.type('text/json');
   cmd.exec('arkmanager checkupdate')
   .then(function(result){
@@ -47,7 +47,14 @@ app.get('/checkUpdate', function(req, res) {
        o[property[0]] = property[1];
        returnMsg[i] = o;
     });
-    res.send(JSON.stringify(returnMsg));
+    if (returnMsg[0].currentVersion === returnMsg[1].availableVersion) {
+      res.send(JSON.stringify('true'));
+    }
+    else {
+      console.log(returnMsg[0]);
+      console.log(returnMsg[1]);
+      res.send(JSON.stringify('false'));
+    }
   })
   .fail(function(err){
     console.log(err.message);
