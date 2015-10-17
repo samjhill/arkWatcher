@@ -53,19 +53,16 @@ Sample response:
 ]
 ```
 
-### /checkUpdate
+### /isUpdated
 
 Type: GET
 
-Returns the current version of the server and the latest available version.
+Returns true if the server is up-to-date, and false otherwise.
 Warning: slow. Nothing I can do about it - it needs to log in to SteamCMD and check the status there.
 
 Sample response:
 ```json
-[
-  {"currentVersion":"799915"},
-  {"availableVersion":"799915"}
-]
+true
 ```
 
 ### /systemLoad
