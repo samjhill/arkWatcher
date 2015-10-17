@@ -48,12 +48,12 @@ app.get('/isUpdated', function(req, res) {
        returnMsg[i] = o;
     });
     if (returnMsg[0].currentVersion === returnMsg[1].availableVersion) {
-      res.send(JSON.stringify('true'));
+      res.send(JSON.stringify(true));
     }
     else {
       console.log(returnMsg[0]);
       console.log(returnMsg[1]);
-      res.send(JSON.stringify('false'));
+      res.send(JSON.stringify(false));
     }
   })
   .fail(function(err){
