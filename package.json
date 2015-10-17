@@ -27,8 +27,7 @@
     "cmd-exec": "^0.1.0",
     "express": "^4.13.3",
     "http-auth": "^2.2.8",
-    "strip-ansi": "^3.0.0",
-    "usage": "^0.7.1"
+    "strip-ansi": "^3.0.0"
   },
   "devDependencies": {
     "mocha": "^2.2.5",
