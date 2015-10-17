@@ -69,23 +69,11 @@ true
 
 Type: GET
 
-Returns the usage of the system's memory and CPU.
+Returns the usage of the system's memory and CPU, in 1, 5, and 15 minute averages, respectively.
 
 Sample response:
 ```json
-{
-    "memory": 3520454656,
-    "memoryInfo": {
-        "rss": 3520454656,
-        "vsize": 20595995574272
-    },
-    "cpu": 29.442942273083002,
-    "cpuInfo": {
-        "pcpu": 29.442942273083002,
-        "pcpuUser": 5.913370184925621,
-        "pcpuSystem": 23.529572088157384
-    }
-}
+[0.15234375,0.2236328125,0.2626953125]
 ```
 
 ### /start
