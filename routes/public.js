@@ -26,6 +26,7 @@ module.exports = function(app){
          });
          returnData[property[0]] = property[1];
       });
+      res.status(200);
       res.send(returnData);
     })
     .fail(function(err){

@@ -28,6 +28,9 @@ app.use(function(req, res, next) {
  
 });
 
+//unauthenticated routes
+var publicRoutes = require('./routes/public')(app);
+
 app.use(auth.connect(basic));
 
 app.post('/authenticate', function(req, res){ // if they can reach this route, they're authenticated
@@ -40,7 +43,6 @@ app.post('/authenticate', function(req, res){ // if they can reach this route, t
 });
 
 //routes
-var publicRoutes = require('./routes/public')(app);
 var adminRoutes = require('./routes/admin')(app);
 var systemRoutes = require('./routes/system')(app);
 var systemRoutes = require('./routes/update')(app);

@@ -3,6 +3,7 @@ module.exports = function(app){
 var cmd = require("cmd-exec").init();
 var async = require("async");
 var stripAnsi = require('strip-ansi');
+var spawn = require('child_process').spawn;
 
 /*
  * checkUpdate connects to SteamCMD and compares the versions we're given.
@@ -10,7 +11,6 @@ var stripAnsi = require('strip-ansi');
  * False otherwise
  */
 var checkUpdate = function(){
-  var returnVal;
   cmd.exec('arkmanager checkupdate')
   .then(function(result){
     var returnMsg = stripAnsi(result.message);
@@ -55,27 +55,56 @@ app.get('/isUpdated', function(req, res) {
  * TODO: stream update console log or % complete to the client
  */
 app.get('/update', function(req, res) {
-  res.type('application/json');
-  cmd.exec('arkmanager update --safe')
-  .then(function(result){
-   	var status = stripAnsi(result.message);
-	status = status.trim();
-	console.log(status);
-	res.send(JSON.stringify(status));
-  })
-  .fail(function(err){
-  })
-  .done(function(){
-    console.log('returned status of server update');
+  var toReturn;
+  
+  var proc = spawn('arkmanager', ['update', '--safe']);
+  proc.stdout.on('data', function(data){
+    var output = data.toString();
+    console.log(output);
+    //if server is already updated
+    if (output.indexOf('Your server is already up to date!') !== -1) {
+      toReturn = 'Server is already up-to-date.';
+    }
+    
+    //find update progress
+    if (output.indexOf('progress:') !== -1) {
+      var startPos = output.indexOf('progress:') + 10; //get the value right after progress:_, which should be a number
+      var endPos = output.indexOf(' (', startPos); // find the end of this value, which is signified by space + (
+      console.log(output.substring(startPos, endPos).trim());
+      updatePercent = output.substring(startPos, endPos).trim();
+      toReturn = 'Updating...';
+    }
   });
+  
+  proc.stderr.on('data', function(data){
+    console.log(data);
+  });
+  
+  proc.on('close', function (code, signal) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.write(JSON.stringify(toReturn));
+    res.end();
+  });
+
+
 });
 
 /*
- * Load checkUpdate on server start and every 10 minutes so we can serve it more quickly to the client
+ * Returns progress of an update
+ */
+app.get('/updateProgress', function(req, res){
+    res.status(200);
+    res.send(updatePercent);
+});
+
+/*
+ * Load checkUpdate on server start and every 5 minutes so we can serve it more quickly to the client
  */
 var isUpdated = checkUpdate();
+var updatePercent = 0.00;
+
 setInterval(function() {
   checkUpdate();
-}, 1000 * 10);
+}, 1000 * 60 * 5);
 
 }
