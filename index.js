@@ -43,6 +43,7 @@ app.post('/authenticate', function(req, res){ // if they can reach this route, t
 var publicRoutes = require('./routes/public')(app);
 var adminRoutes = require('./routes/admin')(app);
 var systemRoutes = require('./routes/system')(app);
+var systemRoutes = require('./routes/update')(app);
 
 console.log('arkWatcher listening on port ' + (process.env.PORT || 4730));
 app.listen(process.env.PORT || 4730);

@@ -25,61 +25,6 @@ app.get('/log', function(req, res) {
   });
 });
 
-app.get('/isUpdated', function(req, res) {
-  res.type('text/json');
-  cmd.exec('arkmanager checkupdate')
-  .then(function(result){
-    var returnMsg = stripAnsi(result.message);
-    returnMsg = decodeURIComponent(returnMsg);
-    returnMsg = stripAnsi(returnMsg);
-    returnMsg = returnMsg.trim();
-    returnMsg = returnMsg.split('\n');
-    returnMsg.splice(0,1); //remove the 'querying steam database for latest version...' message
-    returnMsg.splice(returnMsg.length -1, 1); //remove the 'your server is up to date!' message
-    returnMsg.forEach(function( property, i ){
-       property = property.split(':');
-       property[0] = property[0].toCamelCase();
-       property.forEach(function( item, j ) {
-          item = item.trim();
-          property[j] = item;
-       });
-       var o = {};
-       o[property[0]] = property[1];
-       returnMsg[i] = o;
-    });
-    if (returnMsg[0].currentVersion === returnMsg[1].availableVersion) {
-      res.send(JSON.stringify(true));
-    }
-    else {
-      console.log(returnMsg[0]);
-      console.log(returnMsg[1]);
-      res.send(JSON.stringify(false));
-    }
-  })
-  .fail(function(err){
-    console.log(err.message);
-  })
-  .done(function(){
-    console.log("successfully returned checkupdate to a client");
-  });
-});
-
-app.post('/update', function(req, res) {
-  res.type('application/json');
-  cmd.exec('arkmanager update --safe')
-  .then(function(result){
-   	var status = stripAnsi(result.message);
-	status = status.trim();
-	console.log(status);
-	res.send(JSON.stringify(status));
-  })
-  .fail(function(err){
-  })
-  .done(function(){
-    console.log('returned status of server update');
-  });
-});
-
 app.post('/stop', function(req, res) {
   res.type('application/json');
   cmd.exec('arkmanager stop')
