@@ -85,16 +85,23 @@ app.get('/update', function(req, res) {
     res.write(JSON.stringify(toReturn));
     res.end();
   });
-
-
+  
+  //// for testing
+  //updatePercent = 0;
+  //setInterval(function(){
+  //            if(updatePercent != 100){
+  //              updatePercent += 1;
+  //            }
+  //  }, 1000);
+  //res.send(JSON.stringify('Updating...'));
 });
 
 /*
  * Returns progress of an update
  */
 app.get('/updateProgress', function(req, res){
-    res.status(200);
-    res.send(updatePercent);
+    console.log('updatePercent: ' + updatePercent);
+    res.send(JSON.stringify(updatePercent));
 });
 
 /*
