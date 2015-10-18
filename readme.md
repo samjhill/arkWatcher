@@ -58,7 +58,6 @@ Sample response:
 Type: GET
 
 Returns true if the server is up-to-date, and false otherwise.
-Warning: slow. Nothing I can do about it - it needs to log in to SteamCMD and check the status there.
 
 Sample response:
 ```json
